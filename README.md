@@ -1,15 +1,13 @@
 # LiveBacktrace
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/live_backtrace`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+An initial prototype for a live backtrace server. Proof of concept. To use:
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'live_backtrace'
+gem 'live_backtrace
 ```
 
 And then execute:
@@ -22,18 +20,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+in pry, do something like
 
-## Development
+```ruby
+$LOAD_PATH << (ENV['GEM_HOME'] + "/gems/live_backtrace-0.1.0/lib")
+require "live_backtrace"
+Trace.trace!
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+To start tracing when a pry session is entered. Or you can just start the code from wherever, in your code, with
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+require "live_backtrace"
+Trace.trace!
+```
 
-## Contributing
+I've not create binaries yet so you can start the server with backtrace recieving server with something like:
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/live_backtrace. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/live_backtrace/blob/master/CODE_OF_CONDUCT.md).
-
+```bash
+ruby $GEM_HOME/gems/live_backtrace-0.1.0/lib/live_backtrace/server.rb
+```
 
 ## License
 
